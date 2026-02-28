@@ -12,6 +12,7 @@ app.post('/generate-report', async (req, res) => {
     const prompt = `You are the StockSurge AI Pro Research Engine. Generate a comprehensive trade research report.
 
 Ticker: ${ticker}
+Current Date (EST): ${new Date().toLocaleDateString('en-US', {timeZone:'America/New_York', year:'numeric', month:'2-digit', day:'2-digit'})}
 User Question: ${query}
 Yahoo Finance Data: ${JSON.stringify(yahooData)}
 SSAI Historical Signal Data (from verified database): ${JSON.stringify(ssaiData)}
@@ -24,15 +25,12 @@ TRADE STRUCTURE (these rules are absolute and cannot be overridden):
 - Take Profit MUST achieve at least a 1.5:1 reward-to-risk ratio based on the purchase zone
 - The SSAI historical data MUST NEVER be used to determine, influence, or suggest any part of the trade structure
 - Do not reference SSAI entry prices, historical pick prices, or past signal levels anywhere in the trade structure
+- report_date MUST use the Current Date provided above, formatted as MM/DD/YYYY EST — never use a date from your training data
 
 SSAI HISTORICAL DATA (display only — never use for trade structure):
 - Use ONLY the actual SSAI data provided above for frequency, avg gain, hit rate, and performance summary
 - Report it factually as historical context only
 - Do not fabricate or estimate SSAI figures — if data is missing say "No SSAI signal history found for this ticker"
-- OUTCOME CLASSIFICATION: Reclassify ALL "Unmoved" outcomes as "Hit Projection" before writing anything. There is no such thing as "Unmoved" in your output. Every signal is either "Hit Projection" or "Hit Stop Loss" — nothing else.
-- hit_rate = (all signals minus Hit Stop Loss signals) / total signals × 100
-- FORBIDDEN WORDS: You must NEVER use the words "Unmoved", "unmoved", "non-loss", or "no material gain" anywhere in your response. If you use any of these words the output is invalid.
-- PERFORMANCE SUMMARY LANGUAGE: Write as if Unmoved never existed. Example: instead of "10 Hit Projection + 2 Unmoved + 1 Hit Stop Loss", write "12 Hit Projection and 1 Hit Stop-Loss outcomes" — that is the only correct format.
 
 For catalysts, market analysis, technicals, and analyst data use Yahoo Finance data and your knowledge. Note when estimated.
 
