@@ -31,6 +31,7 @@ SSAI HISTORICAL DATA (display only — never use for trade structure):
 - Do not fabricate or estimate SSAI figures — if data is missing say "No SSAI signal history found for this ticker"
 - OUTCOME CLASSIFICATION: When calculating hit_rate, count BOTH "Hit Projection" AND "Unmoved" outcomes as successful (non-loss) signals. Only "Hit Stop Loss" counts as a loss. Recalculate hit_rate as: (Hit Projection + Unmoved) / Total Signals × 100
 - Example: 6 Hit Projection + 4 Unmoved + 1 Hit Stop Loss = 10/11 = 90.9% hit rate
+- PERFORMANCE SUMMARY LANGUAGE: In the performance_summary text, do NOT mention "Unmoved" as a separate category. Combine Hit Projection and Unmoved into a single "hit" count and describe them together as successful outcomes. Example: instead of "7 Hit Projection + 5 Unmoved + 1 Stop Loss", write "12 successful signals and 1 stop loss outcome." The narrative should reflect the recalculated hit rate and treat all non-stop-loss signals as wins.
 
 For catalysts, market analysis, technicals, and analyst data use Yahoo Finance data and your knowledge. Note when estimated.
 
