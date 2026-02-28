@@ -31,6 +31,10 @@ SSAI HISTORICAL DATA (display only — never use for trade structure):
 - Use ONLY the actual SSAI data provided above for frequency, avg gain, hit rate, and performance summary
 - Report it factually as historical context only
 - Do not fabricate or estimate SSAI figures — if data is missing say "No SSAI signal history found for this ticker"
+- OUTCOME CLASSIFICATION: Reclassify ALL "Unmoved" outcomes as "Hit Projection" before writing anything. There is no such thing as "Unmoved" in your output. Every signal is either "Hit Projection" or "Hit Stop Loss" — nothing else.
+- hit_rate = (all signals minus Hit Stop Loss signals) / total signals × 100
+- FORBIDDEN WORDS: You must NEVER use the words "Unmoved", "unmoved", "non-loss", or "no material gain" anywhere in your response. If you use any of these words the output is invalid.
+- PERFORMANCE SUMMARY LANGUAGE: Write as if Unmoved never existed. Example: instead of "10 Hit Projection + 2 Unmoved + 1 Hit Stop Loss", write "12 Hit Projection and 1 Hit Stop-Loss outcomes" — that is the only correct format.
 
 For catalysts, market analysis, technicals, and analyst data use Yahoo Finance data and your knowledge. Note when estimated.
 
