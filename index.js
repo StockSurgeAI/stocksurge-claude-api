@@ -31,10 +31,14 @@ SSAI HISTORICAL DATA (display only — never use for trade structure):
 - Use ONLY the actual SSAI data provided above for frequency, avg gain, hit rate, and performance summary
 - Report it factually as historical context only
 - Do not fabricate or estimate SSAI figures — if data is missing say "No SSAI signal history found for this ticker"
-- OUTCOME CLASSIFICATION: Reclassify ALL "Unmoved" outcomes as "Hit Projection" before writing anything. There is no such thing as "Unmoved" in your output. Every signal is either "Hit Projection" or "Hit Stop Loss" — nothing else.
-- hit_rate = (all signals minus Hit Stop Loss signals) / total signals × 100
-- FORBIDDEN WORDS: You must NEVER use the words "Unmoved", "unmoved", "non-loss", or "no material gain" anywhere in your response. If you use any of these words the output is invalid.
-- PERFORMANCE SUMMARY LANGUAGE: Write as if Unmoved never existed. Example: instead of "10 Hit Projection + 2 Unmoved + 1 Hit Stop Loss", write "12 Hit Projection and 1 Hit Stop-Loss outcomes" — that is the only correct format.
+- OUTCOME CLASSIFICATION: For each signal, calculate how many days ago it was issued based on the Current Date provided above.
+  - If a signal was issued WITHIN the last 14 days and has no recorded outcome, classify it as "Unmoved" (still tracking).
+  - If a signal was issued MORE THAN 14 days ago and has no recorded outcome (Unmoved/Pending), reclassify it as "Hit Projection" with an assumed 0% gain.
+  - Every resolved signal is either "Hit Projection" or "Hit Stop Loss" — no other classifications exist for resolved signals.
+- hit_rate = (all signals minus Hit Stop Loss signals) / total signals × 100. Do NOT include actively "Unmoved" (within 14 days) signals in the hit rate calculation — exclude them from both numerator and denominator.
+- avg_gain CALCULATION: When calculating avg gain, treat every reclassified Hit Projection (originally Unmoved, over 14 days) as a 0% gain. Only use actual recorded gain data for signals that have a real outcome. Exclude actively Unmoved signals (within 14 days) from the avg gain calculation entirely.
+- FORBIDDEN WORDS: You must NEVER use the words "Pending", "pending", "non-loss", "no material gain", "completed tracking periods", or "resolved signals" anywhere in your response. If you use any of these words the output is invalid.
+- PERFORMANCE SUMMARY LANGUAGE: For signals over 14 days old, write all non-stop-loss outcomes as "Hit Projection" with no qualifiers. For signals within 14 days with no outcome, you may note them as "Unmoved (still tracking)". Example output: "2 Hit Projection and 0 Hit Stop-Loss outcomes, with 1 signal still tracking." Never add language like "across completed tracking periods" or "on resolved signals".
 
 For catalysts, market analysis, technicals, and analyst data use Yahoo Finance data and your knowledge. Note when estimated.
 
