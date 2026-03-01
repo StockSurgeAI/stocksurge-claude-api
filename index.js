@@ -45,7 +45,6 @@ SSAI HISTORICAL DATA (display only — never use for trade structure):
   - hit_stop_loss_pct = hit_stop_loss_count / (hit_projection_count + hit_stop_loss_count) × 100
 - OUTPUT FORMAT for performance_summary: Report only these facts in plain sentences:
   - How many times the ticker was recommended (total_signals)
-  - The dates it was recommended
   - Hit Projection count and its percentage (hit_projection_pct)
   - Hit Stop Loss count and its percentage (hit_stop_loss_pct)
   - If unmoved_count > 0, note those signals by date as "Unmoved (pending)"
